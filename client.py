@@ -164,7 +164,7 @@ class MyClient(botpy.Client):
                                 msg_id=message.id,
                                 content=uploadRes
                             )
-                        return None
+                            return None
                     print(images)
                     insertSj(images)
                     messageResult = await message._api.post_group_message(

@@ -61,8 +61,8 @@ class SqliteSqlalchemy(object):
 
 insertSjImage = text(
     "insert into qr_sj ( img_name, img_note,  url_get, url_delete, upload_by, upload_time,belong_group,group_id) "
-    "values ( :img_name, :img_note,  :url_get, :url_delete, :upload_by, :upload_time,:belong_group,:group_id)")
-selectGroupMax = text("select max(group_id) from qr_sj where belong_group = :belong_group")
+    "values ( :img_name, :img_note,  :url_get, :url_delete, :upload_by, :upload_time,:belong_group,:group_id);")
+selectGroupMax = text("select max(group_id) from qr_sj where belong_group = :belong_group AND is_deleted = 0;")
 
 
 def insertSj(qr_sj):
