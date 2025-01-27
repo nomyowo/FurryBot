@@ -119,7 +119,7 @@ def database_initialized():
 执行初始化文件for_init_database.py
 """
 def execute_init_file():
-    init_file_path = os.path.join(os.path.dirname(__file__), ".\\database_init.py")
+    init_file_path = os.path.join(os.path.dirname(__file__), "./database_init.py")
     try:
         # 执行初始化文件
         subprocess.run(["python", init_file_path], check=True)
