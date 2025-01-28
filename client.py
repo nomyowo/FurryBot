@@ -210,6 +210,17 @@ class MyClient(botpy.Client):
             )
             img_upload.delete_img()  # 从图床中删除图片，防止重复上传
 
+        elif msg.startswith("/help"):
+            content = "\n" + '\n\n\'/今日运势\' 的用法：\n  @机器人后输入 /今日运势\n示例：@FurryBot /今日运势\n'\
+                '\n\n\'/圣经\' 的用法：\n  @机器人后输入 /圣经 即可返回一条圣经\n  也可输入 -n 标签 根据标签查找圣经\n示例：@FurryBot /圣经 或 @FurryBot /圣经 小狗\n'\
+                '\n\n\'/添加\' 的用法：\n  选择一张或多张照片，@机器人后输入 /添加 或 /tj 自动添加圣经\n  可以在 /添加 给图片添加标签，用逗号分隔即可\n  若需更改标签，在 /添加 后输入 -n 图片id:新标签 即可\n示例：@FurryBot /添加 小狗 或 @FurryBot -n 1：小狗\n'\
+                '\n\n\'/天气\' 的用法：\n  @机器人后输入 /天气 城市，返回所需城市天气\n示例：@FurryBot /天气 北京\n'\
+                '\n\n\'/聊天\' 的用法：\n  @机器人后输入 /聊天 您的问题，或直接@机器人后输入您的问题\n示例：@FurryBot /聊天 你是谁 或 @FurryBot 你是谁\n'
+            messageResult = await message._api.post_group_message(
+                group_openid=message.group_openid,
+                msg_type=0,
+                msg_id=message.id,
+                content=content)
         elif msg.startswith("/待办"):
             msgs = msg.replace("/待办", "").strip()
             author = message.author.__dict__
@@ -313,3 +324,5 @@ if __name__ == "__main__":
     intents = botpy.Intents(public_messages=True)
     client = MyClient(intents=intents, is_sandbox=True)
     client.run(appid=config["appid"], secret=config["secret"])
+
+    # print(config["help"])
